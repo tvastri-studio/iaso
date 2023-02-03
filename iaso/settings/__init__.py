@@ -10,8 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
+    # iaso
     "iaso.apps.users",
 
+    # packages
+    "pipeline",
+
+    # django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,7 +40,7 @@ ROOT_URLCONF = "iaso.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -91,6 +96,23 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static/',
 )
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+
+PIPELINE = {
+    "CSS_COMPRESSOR": None,
+    "COMPILERS": ["pipeline.compilers.sass.SASSCompiler"],
+    "STYLESHEETS": {
+
+    }
+}
 
 MEDIA_ROOT = BASE_DIR / 'media/'
 

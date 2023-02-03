@@ -13,3 +13,9 @@ def index(request):
     }
 
     return render(request, 'auth/login.html', context=context)
+
+def login(request):
+    return render(request, 'auth/login.html')
+
+def logout(request):
+    return render(request, 'auth/logout.html')
