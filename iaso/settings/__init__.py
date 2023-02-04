@@ -114,6 +114,14 @@ PIPELINE = {
     }
 }
 
+scss_files = [
+    "base",
+    "login"
+]
+
+for name in scss_files:
+    PIPELINE["STYLESHEETS"].update({name: {"source_filenames": ["css/%s.scss" % name], "output_filename": "css/%s.css" % name}})
+
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 MEDIA_URL = '/media/'
