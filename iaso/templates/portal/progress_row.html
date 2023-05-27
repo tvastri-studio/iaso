@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between">
+{% if wizard.steps.prev %}
+    <button name="wizard_goto_step" class="col-md-4 m-2 text-left btn btn-lg border border-black" type="submit" value="{{ wizard.steps.prev }}">Previous</button>
+{% endif %}
+{% if wizard.steps.next %}
+    <input class="col-md-4 m-2 text-center btn btn-lg border border-black" type="submit" value="Next"></input>
+{% else %}
+    <input class="col-md-4 m-2 text-center btn btn-lg border border-black" type="submit" value="Submit"></input>
+{% endif %}
+</div>
+<div class="progress-bar">
+    <p class="p-3 text-center">Page {{wizard.steps.step1}} of {{wizard.steps.count}}</p>
+    <progress value="{{ wizard.steps.step1 }}" max="{{ wizard.steps.count }}"></progress>
+</div>

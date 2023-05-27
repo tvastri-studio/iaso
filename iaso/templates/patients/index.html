@@ -3,14 +3,14 @@
 {% load pipeline %}
 
 {% block title %}
-    {{ block.super }} - dashboard
+    {{ block.super }} - patients
 {% endblock %}
 
 {% block css %}
     {{  block.super }}
-    {% stylesheet 'dashboard' %}
+    {% stylesheet 'patients' %}
 {% endblock %}
 
 {% block content %}
-<h1>Let's cook.</h1>
+<a href="{% url 'patients:create' %}">create patient</a>
 {% endblock content %}

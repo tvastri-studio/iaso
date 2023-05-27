@@ -1,0 +1,20 @@
+{% extends "page_base.html" %}
+{% load static %}
+{% load pipeline %}
+
+{% block title %}
+    {{ block.super }} - logout
+{% endblock %}
+
+{% block css %}
+    {{  block.super }}
+    {% stylesheet 'auth' %}
+{% endblock %}
+
+{% block body %}
+
+<div id="login">
+    <h1>goodbye.</h1>
+</div>
+
+{% endblock %}

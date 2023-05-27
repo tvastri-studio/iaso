@@ -6,6 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 django-pipeline = "*"
+django-tables2 = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
+django-extensions = "*"
+requests = "*"
+django-formtools = "*"
 
 [dev-packages]
 

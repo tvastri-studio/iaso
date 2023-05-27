@@ -3,18 +3,22 @@ from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
 # Application definition
 
 INSTALLED_APPS = [
     # iaso
     "iaso.apps.users",
+    "iaso.apps.patients",
+    "iaso.apps.dashboard",
+    "iaso.apps.portal",
 
     # packages
     "pipeline",
+    "django_tables2",
+    "formtools",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "django_extensions",
 
     # django
     "django.contrib.admin",
@@ -73,6 +77,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "index"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -114,21 +120,30 @@ PIPELINE = {
     }
 }
 
-scss_files = [
+sass_files = [
+    "skeleton",
     "base",
-    "login"
+    "nav",
+    "auth",
+    "dashboard",
+    "patients",
+    "intake",
 ]
 
-for name in scss_files:
-    PIPELINE["STYLESHEETS"].update({name: {"source_filenames": ["css/%s.scss" % name], "output_filename": "css/%s.css" % name}})
+for name in sass_files:
+    PIPELINE["STYLESHEETS"].update({name: {"source_filenames": ["css/%s.sass" % name], "output_filename": "css/%s.css" % name}})
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MEDIA_ROOT = BASE_DIR / 'media/'
-
 MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+GOOGLE_PLACES_API_KEY = ""
 
 from .secret import *

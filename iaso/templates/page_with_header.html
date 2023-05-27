@@ -1,0 +1,36 @@
+{% extends "page_base.html" %}
+{% load static %}
+{% load pipeline %}
+
+{% block css %}
+    {{  block.super }}
+    {% stylesheet 'skeleton' %}
+    {% stylesheet 'base' %}
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock js %}
+
+{% block body %}
+<header>
+    <a id="clock"></a>
+    <a>iaso.</a>
+    <a class="profile">
+        <div class="picture" style="background-image: url({% static 'images/shetal.png' %})"></div>
+        <div class="name">Shetal Patel</div>
+    </a>
+</header>
+
+<script>
+    document.getElementById('clock').innerHTML = new Date().toLocaleTimeString();
+    
+    setInterval(() => {
+        document.getElementById('clock').innerHTML = new Date().toLocaleTimeString();
+    },1000);
+</script>
+
+{% block main %}
+{% endblock main %}
+
+{% endblock body %}

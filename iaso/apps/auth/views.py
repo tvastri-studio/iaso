@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ..dashboard.views import dashboard
 
 # Create your views here.
@@ -12,10 +12,4 @@ def index(request):
         "form": form
     }
 
-    return render(request, 'auth/login.html', context=context)
-
-def login(request):
-    return render(request, 'auth/login.html')
-
-def logout(request):
-    return render(request, 'auth/logout.html')
+    return redirect('login')

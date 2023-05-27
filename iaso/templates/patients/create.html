@@ -1,0 +1,21 @@
+{% extends "page_with_nav.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load pipeline %}
+
+{% block title %}
+    {{ block.super }} - patients
+{% endblock %}
+
+{% block css %}
+    {{  block.super }}
+    {% stylesheet 'patients' %}
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'patients:index' %}">back</a>
+<form method="post">
+    {% crispy form %}
+    {% csrf_token %}
+</form>
+{% endblock content %}

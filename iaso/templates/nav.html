@@ -1,0 +1,15 @@
+{% load static %}
+<nav>
+    <div>
+        <a href="{% url 'index' %}" class="index-icon"></a>
+    </div>
+    <div>
+        <a href="{% url 'index' %}" class="appointments-icon"></a>
+    </div>
+    <div>
+        <a href="{% url 'patients:index' %}" class="patients-icon"></a>
+    </div>
+    <div>
+        <a href="{% url 'index' %}" class="labs-icon"></a>
+    </div>
+</nav>

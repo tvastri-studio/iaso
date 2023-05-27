@@ -1,4 +1,4 @@
-{% extends "base_page.html" %}
+{% extends "page_base.html" %}
 {% load static %}
 {% load pipeline %}
 
@@ -8,23 +8,33 @@
 
 {% block css %}
     {{  block.super }}
-    {% stylesheet 'base' %}
-    {% stylesheet 'login' %}
+    {% stylesheet 'auth' %}
 {% endblock %}
 
 {% block body %}
+
 <div id="login">
-    <h1 id="logo"
-        style="margin-bottom: 10px; color: #000000!important; text-shadow: -0px 0 #DDE3EB, 0 0px #DDE3EB, 0px 0 #DDE3EB, 0 -0px #DDE3EB!important;">
-        iaso</h1>
-    <form method="POST" action="?i=redirect&amp;r=YToxOntzOjE6ImkiO3M6NDoibWFpbiI7fQ=="><input type="text" name="user"
-            style="background: url(https://i.imgur.com/a80wRzt.png) no-repeat scroll 7px 3px; padding-left: 30px; background-size: 17px; width: 184px; margin-bottom: 10px;"><input
-            type="password" name="pass"
-            style="background: url(https://i.imgur.com/Z2JxXsv.png) no-repeat scroll 7px 4px; padding-left: 30px; background-size: 16px; width: 184px; margin-bottom: 10px;"><input
-            type="submit" value="Access">
-        <blockquote style="border-left: 0px">
-            <p style="margin-bottom: 10px; font-size: 15px;">Gladness becomes Weeping</p><cite>Amos Tutuola</cite>
-        </blockquote>
-    </form><a href="?i=forget" id="forget">don't remember your pass?</a>
+    <h1>iaso.</h1>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required="required" />
+        <input type="password" name="password" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+        <input type="hidden" name="next" value="{{next}}">
+    </form>
 </div>
+
 {% endblock %}

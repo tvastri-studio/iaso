@@ -1,0 +1,21 @@
+{% extends "page_with_header.html" %}
+{% load static %}
+{% load pipeline %}
+
+{% block css %}
+    {{  block.super }}
+    {% stylesheet 'nav' %}
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock js %}
+
+{% block main %}
+<div class="dash">
+    {% include "nav.html" %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</div>
+{% endblock main %}
