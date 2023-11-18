@@ -17,6 +17,7 @@ def create(request):
         if form.is_valid():
             patient = form.save()
 
+            # TODO catch errors on send_mail
             send_mail(
                 "Fill out your patient intake form!",
                 f"Thank you for your interest in the Shrivatsa Center. Here is the link to your personalized intake form: http://localhost:8000/portal/intake?id={patient.uuid}",
